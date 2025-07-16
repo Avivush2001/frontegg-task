@@ -1,9 +1,9 @@
 import './App.css';
 import { useRef, useEffect } from 'react';
-import { useAuth, useLoginWithRedirect, ContextHolder  } from "@frontegg/react";
+import { useAuth, useLoginWithRedirect, ContextHolder, AdminPortal } from "@frontegg/react";
 
 function App() {
-  const initialRedirectAttempted = useRef(false);
+  const initialRedirectAttempted = useRef(false); // Using this to prevent flickering and refresh loops
   const { user, isAuthenticated } = useAuth();
   const loginWithRedirect = useLoginWithRedirect();
   
@@ -32,8 +32,8 @@ function App() {
             <span>Logged in as: {user?.name}</span>
           </div>
           <div>
-            <button onClick={() => alert(user?.accessToken)}>
-              What is my access token?
+            <button onClick={() => { AdminPortal.show(); }}>
+              Settings
             </button>
           </div>
           <div>
